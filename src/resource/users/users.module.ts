@@ -6,6 +6,7 @@ import { UsersController } from './users.controller';
 import { AuthModule } from '../auth/auth.module';
 import { UsersService } from './users.service';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { S3Module } from 'src/shared/s3/s3.module';
 
 
@@ -17,6 +18,13 @@ import { S3Module } from 'src/shared/s3/s3.module';
 @Module({
   imports:[TypeOrmModule.forFeature([MediaFiles,User ]), AuthModule],
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+import { S3Module } from 'src/shared/s3/s3.module';
+
+
+@Module({
+  imports:[TypeOrmModule.forFeature([MediaFiles,User ]), AuthModule,S3Module],
+>>>>>>> 9b84eb2 (update 13.2)
   controllers: [UsersController],
   providers: [UsersService],
 })

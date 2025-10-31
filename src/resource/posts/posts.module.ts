@@ -6,6 +6,7 @@ import { Posts } from 'src/database/entities/posts.entity';
 import { MediaFiles, User } from 'src/database/entities';
 import { AuthModule } from '../auth/auth.module';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { S3Module } from 'src/shared/s3/s3.module';
 
 @Module({
@@ -15,6 +16,12 @@ import { S3Module } from 'src/shared/s3/s3.module';
 @Module({
   imports:[TypeOrmModule.forFeature([Posts, User, MediaFiles]), AuthModule],
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+import { S3Module } from 'src/shared/s3/s3.module';
+
+@Module({
+  imports:[TypeOrmModule.forFeature([Posts, User, MediaFiles]), AuthModule,S3Module],
+>>>>>>> 9b84eb2 (update 13.2)
   controllers: [PostsController],
   providers: [PostsService],
   exports: [PostsService]

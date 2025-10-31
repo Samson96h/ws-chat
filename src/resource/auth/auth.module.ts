@@ -8,9 +8,13 @@ import { SecretCode, User } from '../../database/entities';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '../../guards';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { S3Module } from 'src/shared/s3/s3.module';
 =======
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+import { S3Module } from 'src/shared/s3/s3.module';
+>>>>>>> 9b84eb2 (update 13.2)
 
 
 @Module({
@@ -18,10 +22,14 @@ import { S3Module } from 'src/shared/s3/s3.module';
     TypeOrmModule.forFeature([User, SecretCode]),
     JwtModule.registerAsync({
 <<<<<<< HEAD
+<<<<<<< HEAD
       imports: [ConfigModule, S3Module],
 =======
       imports: [ConfigModule],
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+      imports: [ConfigModule, S3Module],
+>>>>>>> 9b84eb2 (update 13.2)
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: config.get<string>('JWT_SECRET'),

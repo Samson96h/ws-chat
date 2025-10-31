@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 import { MediaFiles } from 'src/database/entities/media-files';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { User } from 'src/database/entities';
 import { v4 as uuid } from 'uuid';
 import { S3Service } from 'src/shared/s3/s3.service';
@@ -13,6 +14,12 @@ import { S3Service } from 'src/shared/s3/s3.service';
 import { FileHelper, PhotoValidator } from '../../helpers';
 import { User } from 'src/database/entities';
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+import { User } from 'src/database/entities';
+import { v4 as uuid } from 'uuid';
+import { S3Service } from 'src/shared/s3/s3.service';
+
+>>>>>>> 9b84eb2 (update 13.2)
 
 
 @Injectable()
@@ -20,9 +27,13 @@ export class UsersService {
 
   constructor(
 <<<<<<< HEAD
+<<<<<<< HEAD
     private readonly s3Service: S3Service,
 =======
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+    private readonly s3Service: S3Service,
+>>>>>>> 9b84eb2 (update 13.2)
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     @InjectRepository(MediaFiles)
@@ -44,12 +55,16 @@ export class UsersService {
 
     if (files) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b84eb2 (update 13.2)
       user.mediaFiles = [];
 
       for (const file of files) {
         const type = file.originalname.split('.').pop();
         const filePath = `Samson/User/${type}/${uuid()}.${file.originalname}`;
 
+<<<<<<< HEAD
         const photoEntity = this.mediaRepository.create({
           path: filePath,
           size: file.size,
@@ -66,6 +81,15 @@ export class UsersService {
         })
         user.mediaFiles.push(photoEntity)
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+        const photoEntity = this.mediaRepository.create({
+          path: filePath,
+          size: file.size,
+        });
+
+        await this.s3Service.putObject(file.buffer, filePath, file.mimetype);
+        user.mediaFiles.push(photoEntity);
+>>>>>>> 9b84eb2 (update 13.2)
       }
     }
 
@@ -73,11 +97,15 @@ export class UsersService {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b84eb2 (update 13.2)
   async deleteUserPhoto(userId: number, fileName: string) {
     const user = await this.userRepository.findOne({
       where: { id: userId },
       relations: ['mediaFiles'],
     });
+<<<<<<< HEAD
 =======
   async addFriend(userId: number, friendId: number): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['friends'] })
@@ -108,12 +136,17 @@ export class UsersService {
   async getFriends(requesterId: number, userId: number): Promise<User[]> {
     const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['friends'] });
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+>>>>>>> 9b84eb2 (update 13.2)
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b84eb2 (update 13.2)
     const photo = user.mediaFiles.find((f) => f.path === fileName);
 
     if (!photo) {
@@ -176,6 +209,7 @@ export class UsersService {
     }
 
     if (targetUser.id !== requesterId && targetUser.confidentiality === 'private') {
+<<<<<<< HEAD
       throw new ForbiddenException('User data is private');
     }
 
@@ -186,21 +220,27 @@ export class UsersService {
 
 =======
     if (user.id !== requesterId && user.confidentiality === 'private') {
+=======
+>>>>>>> 9b84eb2 (update 13.2)
       throw new ForbiddenException('User data is private');
     }
 
-    return user.friends;
+    return targetUser.friends;
   }
 
 
+<<<<<<< HEAD
 >>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
+=======
+
+>>>>>>> 9b84eb2 (update 13.2)
   findAll() {
     return this.userRepository.find();
   }
 
 
   async findOne(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } })
+    const user = await this.userRepository.findOne({ where: { id }, relations:['friends', 'mediaFiles'] })
 
     if (!user) {
       throw new NotFoundException('user not found')
