@@ -6,7 +6,11 @@ import { AuthUser } from '../../decorators';
 import type { IRequestUser } from '../chat/types';
 import { AuthGuard } from 'src/guards';
 import { ParamIdDTO } from 'src/dto/param-id.dto';
+<<<<<<< HEAD
 import { PhotoValidationPipe } from 'src/shared/photoValidator/photo-validation.pipe';
+=======
+import { memoryStorage } from 'multer';
+>>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
 
 
 @UseGuards(AuthGuard)
@@ -19,7 +23,11 @@ export class PostsController {
 async createPost(
   @AuthUser() user: IRequestUser,
   @Body() dto: CreatePostDTO,
+<<<<<<< HEAD
   @UploadedFiles(PhotoValidationPipe) files: Express.Multer.File[]
+=======
+  @UploadedFiles() files: Express.Multer.File[]
+>>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
 ) {
   return this.postsService.createPost(user.id, dto, files);
 }

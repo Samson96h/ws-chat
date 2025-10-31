@@ -21,7 +21,11 @@ export const dataSource = new DataSource({
   database: process.env.DATABASE_NAME,
   entities: entities,
   migrationsTableName: 'mindgrid_migrations',
+<<<<<<< HEAD
   migrations: [path.join(__dirname, 'src/database/migrations/*.{ts,js}')],
+=======
+  migrations: [path.join(__dirname, 'database/migrations/*.{ts,js}')],
+>>>>>>> 839eab0532715c825f0a57dc1f31e79991e8080f
   synchronize: false,
   logging: true,
 });
